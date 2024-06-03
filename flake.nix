@@ -6,7 +6,12 @@
     nixpkgs,
     flake-utils,
   }:
-    flake-utils.lib.eachDefaultSystem (system: let
+    {
+      overlays.default = final: prev: {
+        fzf-runner = self.packages.${final.system}.fzf-runner;
+      };
+    }
+    // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
       inherit (pkgs) rustPlatform;
     in {
@@ -23,5 +28,5 @@
       devShell = pkgs.mkShell {
         packages = with pkgs; [cargo clippy rust-analyzer rustfmt];
       };
-    });
+    }));
 }
