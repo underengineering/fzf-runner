@@ -36,7 +36,8 @@ fn parse_applications(entries: ReadDir, applications: &mut Vec<DesktopEntry>) {
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let xdg_data_dirs = env::var("XDG_DATA_DIRS").expect("XDG_DATA_DIRS is not set");
+    let xdg_data_dirs =
+        env::var("XDG_DATA_DIRS").unwrap_or("/usr/local/share/:/usr/share/".to_string());
     let mut applications = Vec::new();
     for data_dir in xdg_data_dirs.split(':') {
         let applications_path = PathBuf::from(data_dir).join("applications");
