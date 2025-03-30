@@ -85,7 +85,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             Arg::Field(_) => None,
         });
         if let Ok(Fork::Child) = fork::daemon(false, false) {
-            Command::new(arg0)
+            let _ = Command::new(arg0)
                 .stdin(Stdio::null())
                 .stdout(Stdio::null())
                 .stderr(Stdio::null())
