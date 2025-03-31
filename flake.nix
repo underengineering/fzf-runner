@@ -21,7 +21,9 @@
           version = "1.0.0";
 
           src = ./.;
-          cargoHash = "sha256-KqCqsBCZ3wA3+8ZXvbXd5sJqXx7aVNu+mZHW/+t1PLI=";
+
+          useFetchCargoVendor = true;
+          cargoHash = "sha256-aGt8s50XpBHXu0k+itMC11SRxwpALjkV8VvGbW66ddI=";
         };
         default = fzf-runner;
       };
